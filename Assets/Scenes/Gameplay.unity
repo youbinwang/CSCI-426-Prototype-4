@@ -30053,7 +30053,7 @@ GameObject:
   - component: {fileID: 1565194546}
   - component: {fileID: 1565194545}
   m_Layer: 0
-  m_Name: Box (1)
+  m_Name: Box 1
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
