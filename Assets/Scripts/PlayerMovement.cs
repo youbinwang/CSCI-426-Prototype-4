@@ -25,16 +25,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Car"))
         {
-            gameFail();
+            GameEnd();
         }
     }
 
-   public void gameFail()
+   public void GameEnd()
     {
         //When Player hit by a Car
+        Debug.Log("GameEnd!");
     }
 }

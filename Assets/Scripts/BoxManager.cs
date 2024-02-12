@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ public class BoxManager : MonoBehaviour
 {
     private GameObject player;
     private static bool haveBox = false;
-    private PlayerMovement _playerMovement;
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,11 +14,6 @@ public class BoxManager : MonoBehaviour
         {
             player = other.gameObject;
             boxPickup();
-        }
-        
-        if (other.gameObject.CompareTag("Car"))
-        {
-            _playerMovement.gameFail();
         }
         
         if (other.gameObject.CompareTag("Shop"))
