@@ -30,7 +30,7 @@ public class CarSpawner : MonoBehaviour
         while (true)
         {
             //Car Spawn Rate
-            yield return new WaitForSeconds(Random.Range(1f, 2.5f));
+            yield return new WaitForSeconds(Random.Range(2f, 4f)); //Spawn Rate
             
             if (prefabsList.Count > 0 && CanSpawn(spawnPoint.transform.position))
             {
@@ -45,14 +45,18 @@ public class CarSpawner : MonoBehaviour
             }
         }
     }
-    
+
     bool CanSpawn(Vector2 position)
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, spawnRadius);
-        if (hitColliders.Length > 0)
+        foreach (Collider2D hitCollider in hitColliders)
         {
-            return false;
+            if (!hitCollider.CompareTag("Wall"))
+            {
+                return false;
+            }
         }
+        
         return true;
     }
 }

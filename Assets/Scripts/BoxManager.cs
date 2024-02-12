@@ -40,10 +40,14 @@ public class BoxManager : MonoBehaviour
     void boxDrop()
     {
         Debug.Log("You get 1 Point!");
+        GameManager.instance.UpdateScore(1);
+        player.GetComponent<PlayerMovement>().IncreaseSpeed();
+        
+        player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().FlashSprite());
+        
         GameObject.Destroy(gameObject);
         haveBox = false;
-        //Get a Point
-        //Movement Speed +
+        //More Functions: Play Audio, Visual Effect, etc.
     }
     
     void Update()
@@ -59,5 +63,8 @@ public class BoxManager : MonoBehaviour
         }
     }
     
-    
+    public static void ResetBoxState()
+    {
+        haveBox = false;
+    }
 }

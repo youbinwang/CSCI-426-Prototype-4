@@ -148,4 +148,4 @@ MonoBehaviour:
   carLayer:
     serializedVersion: 2
     m_Bits: 64
-  detectionDistance: 3
+  detectionDistance: 5
