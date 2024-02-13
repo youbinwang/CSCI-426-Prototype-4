@@ -7,8 +7,17 @@ public class BoxManager : MonoBehaviour
 {
     private GameObject player;
     private static bool haveBox = false;
-   
     
+    public AudioClip boxPickSound;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = boxPickSound;
+    }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player") && !haveBox)
@@ -21,7 +30,7 @@ public class BoxManager : MonoBehaviour
         {
             if (haveBox)
             {
-                boxDrop();     
+                boxDrop();
             }
 
             if (!haveBox)
@@ -35,18 +44,20 @@ public class BoxManager : MonoBehaviour
     void boxPickup()
     {
         haveBox = true;
+        audioSource.Play();
         //More Functions: Play Audio, Visual Effect, etc.
     }
 
     void boxDrop()
     {
         Debug.Log("You get 1 Point!");
+        
         GameManager.instance.UpdateScore(1);
         player.GetComponent<PlayerMovement>().IncreaseSpeed();
         
         player.GetComponent<PlayerMovement>().StartCoroutine(player.GetComponent<PlayerMovement>().FlashSprite());
         
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
         haveBox = false;
         //More Functions: Play Audio, Visual Effect, etc.
     }

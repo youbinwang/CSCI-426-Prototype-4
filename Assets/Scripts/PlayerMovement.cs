@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 50f;
     private Rigidbody2D rb;
     private Vector2 movementInput;
-    public AudioSource audioData;
+    public AudioClip playerHit;
+    private AudioSource audioSource;
     
     //Speed Up when delivered a box
     public float speedIncrease = 10f;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem playerDied;
     public GameObject circle;
     private TrailRenderer playerTrail;
+    public GameObject bgm;
 
     public GameManager gameManager;
 
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         playerTrail = GetComponent<TrailRenderer>();
 
         rb.drag = 3f;
+        
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -72,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Car"))
         {
-            audioData.Play();
+            audioSource.PlayOneShot(playerHit);
             GameEnd();
         }
     }
@@ -82,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         //When Player hit by a Car
         Debug.Log("GameEnd!");
         gameManager.StopTimer();
+        bgm.SetActive(false);
         
         playerTrail.Clear();
         playerTrail.enabled = false;
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
    
     IEnumerator DestroyPlayer()
         { 
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(0.8f); 
             Destroy(gameObject);
            gameEndUI.SetActive(true);
         }
