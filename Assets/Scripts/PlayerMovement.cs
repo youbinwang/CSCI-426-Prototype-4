@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 50f;
     private Rigidbody2D rb;
     private Vector2 movementInput;
+    public AudioSource audioData;
     
     //Speed Up when delivered a box
     public float speedIncrease = 10f;
@@ -71,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Car"))
         {
+            audioData.Play();
             GameEnd();
         }
     }

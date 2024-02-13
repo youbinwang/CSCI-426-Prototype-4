@@ -7,6 +7,7 @@ public class BoxManager : MonoBehaviour
 {
     private GameObject player;
     private static bool haveBox = false;
+   
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +21,7 @@ public class BoxManager : MonoBehaviour
         {
             if (haveBox)
             {
-                boxDrop();
+                boxDrop();     
             }
 
             if (!haveBox)
